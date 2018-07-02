@@ -9,6 +9,36 @@ int A[N];
 A[0], A[1], ..., A[n-1] の中でk+1番目に小さい値を返す関数
 ただし、Aの中身は書き換えてしまう。
 */
+
+int mid_n(int A[], int n, int k){
+    int j, pivot;
+    int l = 0;
+    int r = n;
+    int c = 0;
+    pivot = A[0];
+    for(j = 1; j < r; j++){
+        if(A[j] < pivot){
+            int z = A[l+1];
+            A[l+1] = A[j];
+            A[j] = z;
+            l = l+1;
+        }
+        else if(A[j] > pivot){
+            int y = A[r-1];
+            A[r-1] = A[j];
+            A[j] = y;
+            r = r-1;
+            j = j-1;
+        }
+        else {
+            c = c+1;
+        }
+    }
+    if (l < k+1 && k < r) return pivot;
+    else if (r <= k) return quick_select(A+r, n-r, k-r);
+    else return quick_select(A+1, l, k);
+}
+
 int quick_select(int A[], int n, int k){
   int i, j, pivot;
 
