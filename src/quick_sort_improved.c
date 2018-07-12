@@ -43,7 +43,6 @@ void quick_sort(int A[], int n){
     A[l] = pivot;
     
     quick_sort(A,l);
-    quick_sort(A+l,c);
     quick_sort(A+r,n-r);
 }
 return ;
