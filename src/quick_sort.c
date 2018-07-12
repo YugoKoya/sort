@@ -32,7 +32,7 @@ void quick_sort(int A[], int n){
             k = k+1;
         }
     }
-        quick_sort(A,j);
+        quick_sort(A,j-1);
         quick_sort(A+j,n-j);
     }
     return ;
@@ -43,7 +43,7 @@ int main(){
   A[0] = 0;
   A[1] = 3; //原始元
   for(i=2;i<N;i++){
-    A[i] = (long long int) A[i-1] * A[1] % N;
+      A[i] = (long long int) A[i-1] * A[1] % N;
   }
 
   quick_sort(A, N);

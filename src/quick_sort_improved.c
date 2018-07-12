@@ -17,36 +17,33 @@ void quick_sort(int A[], int n){
     
     // 先頭の要素をピボットとする
     pivot = A[0];
-    for(i = 1; i < n; i++){
+    for(i = 1; i < r; i++){
         if(A[i] < pivot){
-            int z = A[l+c+1];
-            A[l+c+1] = A[i];
+            int z = A[l+1];
+            A[l+1] = A[i];
             A[i] = z;
             l++;
         }
-        else if(A[i] == pivot){
-            int y = A[l+c+1];
-            A[l+c+1] = A[i];
+        else if(A[i] > pivot){
+            int y = A[r-1];
+            A[r-1] = A[i];
             A[i] = y;
+            r--;
+            i--;
+        }
+        else {
             c++;
         }
-        else {
-            r--;
-        }
     }
-    int k = 1;
-    while (k <= l) {
-        if (k < l) {
-            A[k-1] = A[k];
-            k = k+1;
-        }
-        else {
-            A[k-1] = A[k];
-            A[k] = pivot;
-            k = k+1;
-        }
+    
+    int k;
+    for (k=0; k<l; k++) {
+        A[k] = A[k+1];
     }
+    A[l] = pivot;
+    
     quick_sort(A,l);
+    quick_sort(A+l,c);
     quick_sort(A+r,n-r);
 }
 return ;
